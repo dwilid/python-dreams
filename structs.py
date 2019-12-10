@@ -1,5 +1,10 @@
-class LazyDict(MutableMapping):
+from collections import MutableMapping
 
+
+class LazyDict(MutableMapping):
+    """Dictionary which stores values as callables and evaluates on
+    first access
+    """
     def __init__(self, *args, **kwargs):
         self.store = dict()
         self.backup = dict()
@@ -24,9 +29,9 @@ class LazyDict(MutableMapping):
 
     def __len__(self):
         return len(self.store)
-    
+
     def __str__(self):
         return str(self.store)
-    
+
     def reset(self, key):
         self.store[key] = self.backup[key]

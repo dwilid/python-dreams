@@ -1,3 +1,6 @@
+import functools as ft
+
+
 def apply(*funcs):
     def _apply(*args, **kwargs):
         return tuple(f(*args, **kwargs) for f in funcs)

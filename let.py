@@ -11,12 +11,13 @@ class Let:
     def __exit__(self, *exc):
         pass
 
+
 @contextmanager
 def let(*args):
     yield tuple(args)
 
 
 if __name__ == '__main__':
-    with Let(1,2,3) as (x,y,z):
-        with let(x,y,z) as (a,b,c):
-            print(a,b,c)
+    with Let(1, 2, 3) as (x, y, z):
+        with let(x, y, z) as (a, b, c):
+            print(a, b, c)
