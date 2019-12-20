@@ -5,3 +5,9 @@ def please(f):
         except:
             return x
     return _please
+
+
+def inspect(obj):
+    """Shamelessly stolen from Elixir"""
+    print(obj)
+    return obj

@@ -40,3 +40,14 @@ def peek(n):
         return [next(xs) for _ in range(n)]
 
     return _peek
+
+
+def fetch(itr, *keys):
+    """Generator which yields values from an iterator of dictlike
+    objects
+    """
+    for i in itr:
+        if len(keys) > 1:
+            yield tuple(i[k] for k in keys)
+        else:
+            yield i[keys[0]]
