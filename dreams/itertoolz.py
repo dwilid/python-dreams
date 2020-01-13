@@ -1,3 +1,6 @@
+from collections import Iterable
+
+
 def head(xs):
     if type(xs) is list or type(xs) is tuple:
         return xs[0]
@@ -51,3 +54,22 @@ def fetch(itr, *keys):
             yield tuple(i[k] for k in keys)
         else:
             yield i[keys[0]]
+
+
+def flatten(itr, level=-1):
+    """Flattens any iterable given number of levels. Setting level to -1
+    (default) flattens the iterable completely.
+    Shamelessly stolen from https://stackoverflow.com/questions/2158395/flatten-an-irregular-list-of-lists/2158532
+    """
+    for e in itr:
+        if all((isinstance(e, Iterable),
+                not isinstance(e, (str, bytes)),
+                level != 0)):
+            for se in flatten(e, level=level - 1):
+                yield se
+        else:
+            yield e
+
+
+def pound(itr):
+    return flatten(itr, level=1)
